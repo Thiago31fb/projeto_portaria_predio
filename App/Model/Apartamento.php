@@ -4,7 +4,7 @@
 
     class Apartamento {
 
-        private $id;
+        private $id; 
         private $apartamento;
     
 

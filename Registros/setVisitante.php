@@ -13,5 +13,5 @@ $visitanteDao = new \App\Model\VisitanteDao();
 
 $visitanteDao->create($visitante);
 
-header("Location: ../iindex.php")
+header("Location: ../iindex.php");
 ?>

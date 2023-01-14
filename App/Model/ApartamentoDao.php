@@ -3,7 +3,7 @@
     namespace App\Model;
 
     class ApartamentoDao {
-
+        
                 // os apartamentos ja forao criados no codigo sql
 
         // public function create(Apartamento $a){

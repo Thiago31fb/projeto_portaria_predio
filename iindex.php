@@ -1,8 +1,11 @@
 <?php
 require_once './vendor/autoload.php';
+
 $visitaDao = new \App\Model\VisitaDao();
-$op_visitas= $visitaDao->read();
-var_dump($op_visitas);
+$op_visitas= $visitaDao->VisitasDiaOrAtiva();
+
+$apartamentoDao = new \App\Model\ApartamentoDao();
+$apartamentos = $apartamentoDao->read();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,8 +37,12 @@ var_dump($op_visitas);
             <label for="indentidade">Indentidade:</label>
             <input type="text" name="indentidade" id="indentidade">
 
-            <label for="apartamento">Apartamento:</label>
-            <input type="number" name="apartamento" id="apartamento">
+            <select name="apartamento" id="apartamento">
+            <?php foreach($apartamentos as $ap): ?>
+                <option value="<?=$ap['id']?>"><?=$ap['apartamento']?></option>
+            
+            <?php endforeach; ?>
+            </select>
 
             <input type="submit" value="Registrar">
 
@@ -43,15 +50,70 @@ var_dump($op_visitas);
     </section>
 
     <section class="registro_saida">
-        <h2>Visitas ativas</h2>
-        <form action="setSaida.php" method="post">
+        <h2>Visitas do dia ou ativas</h2>
+        <table border="1">
+            <tr>
+                <th>Apartamento</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Indentidade</th>
+                <th>Entrada</th>
+                <th>Saida</th>
+            </tr>
 
-            <label for="apartamento">Apartamento:</label>
-            <input type="number" name="apartamento" id="apartamento">
+            <?php foreach($op_visitas as $visitas): ?>
+
+            <tr>
+                <th><?=$visitas['apartamento'];?></th>
+                <th><?=$visitas['nome'];?></th>
+                <th><?=$visitas['sobrenome'];?></th>
+                <th><?=$visitas['indentidade'];?></th>
+                <th><?=$visitas['entrada'];?></th>
+                <th><?=$visitas['saida'];?></th>
+
+                <?php if($visitas['saida']==NULL):?>
+                        <th><a href="./Registros/setSaida.php?id=<?=$visitas['id'];?>">Registrar saida</a></th>
+            </tr>
+            <?php endif; ?>
+            <?php endforeach; ?>
+
+        </table>
+    </section>
+
+    <section class="historico_apartamento">
+        <h2>Historico de visitas de um apartamento</h2>
+        <?php if(filter_input(INPUT_GET,'id_hist') == NULL):?>
+        <ul >
+            <?php foreach($apartamentos as $ap): ?>
+                <li><a href="./iindex.php?id_hist=<?=$ap['id'];?>&&ap=<?=$ap['apartamento'];?>"><?=$ap['apartamento'];?></a></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php else: $historico= $visitaDao->historico((int)filter_input(INPUT_GET,'id_hist'));?>
+    
             
-            <input type="submit" value="Adicionar">
+        <table border="1">
+            <H3><?php echo "Apartamento: ".filter_input(INPUT_GET,'ap')?></H3>
+            <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Indentidade</th>
+                <th>Entrada</th>
+                <th>Saida</th>
+            </tr>
 
-        </form>
+            <?php foreach($historico as $visitas): ?>
+
+            <tr>
+                
+                <th><?=$visitas['nome'];?></th>
+                <th><?=$visitas['sobrenome'];?></th>
+                <th><?=$visitas['indentidade'];?></th>
+                <th><?=$visitas['entrada'];?></th>
+                <th><?=$visitas['saida'];?></th>
+        <?php endforeach; ?>
+        <a href="./iindex.php"><h4>Voltar</h4></a>
+        <?php endif; ?>
+        
     </section>
 </body>
 </html>
