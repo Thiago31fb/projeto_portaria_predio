@@ -5,15 +5,21 @@
     class VisitaDao {
 
         public function entrada(Visita $v){
-
-            $sql = 'INSERT INTO visita (id_visitante, id_apartamento, entrada) VALUES (?,?,current_timestamp())';
+            $visitanteDao= new \App\Model\VisitanteDao();
             
+            if($visitanteDao->validate($v->getId_visitante())){
+                $sql = 'INSERT INTO visita (id_visitante, id_apartamento, entrada) VALUES (?,?,current_timestamp())';
                 
-            $stmt = Conexao::getConn()->prepare($sql);
-            $stmt->bindValue(1, $v->getId_visitante());
-            $stmt->bindValue(2, $v->getId_apartamento());
-            $stmt-> execute();
-            
+                    
+                $stmt = Conexao::getConn()->prepare($sql);
+                $stmt->bindValue(1, $v->getId_visitante());
+                $stmt->bindValue(2, $v->getId_apartamento());
+                $stmt-> execute();
+            }
+            else{
+                return $erro ="teste";
+            }
+
 
         }
 

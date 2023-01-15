@@ -1,0 +1,32 @@
+Visitantes Cadastrados 
+
+    <section class="visitantes_cadastrados">
+        <h2>Visitantes Cadastrados</h2>
+        <?php if(filter_input(INPUT_GET,'exibir') == NULL):?>
+            
+            <a href="iindex.php?exibir=1">Exibir</a>
+
+        <?php else:?>
+            
+        <table border="1">
+            <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Indentidade</th>
+                <th>Empresa</th>
+            </tr>
+
+            <?php foreach($visitantes as $v): ?>
+
+            <tr>
+                
+                <th><?=$v['nome'];?></th>
+                <th><?=$v['sobrenome'];?></th>
+                <th><?=$v['indentidade'];?></th>
+                <th><?=$v['empresa'];?></th>
+           
+        <?php endforeach; ?>
+        <a href="./iindex.php"><h4>Voltar</h4></a>
+        <?php endif; ?>
+        
+    </section>

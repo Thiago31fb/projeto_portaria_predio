@@ -27,7 +27,7 @@
         }
 
         public function read(){
-            $sql = 'SELECT * FROM visitante';
+            $sql = 'SELECT nome, sobrenome, indentidade, empresa FROM visitante';
             $stmt = Conexao::getConn()->prepare($sql);
             $stmt-> execute();
 
@@ -63,7 +63,7 @@
 
         }
 
-        public function validate($indentidade){
+        public function validando_indet($indentidade){
             $sql ="SELECT * FROM visitante WHERE indentidade =?";
             $stmt = Conexao::getConn()->prepare($sql);
             $stmt->bindValue(1, $indentidade);
@@ -74,6 +74,19 @@
                 return $resultado;
             else:
                 return [];
+            endif;
+        }
+
+        public function validate($id){
+            $sql ="SELECT * FROM visitante WHERE id =?";
+            $stmt = Conexao::getConn()->prepare($sql);
+            $stmt->bindValue(1, $id);
+            $stmt->execute();
+
+            if($stmt->rowCount() > 0):
+                return TRUE;
+            else:
+                return FALSE;
             endif;
         }
 
