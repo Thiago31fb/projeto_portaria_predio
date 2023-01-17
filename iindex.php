@@ -69,7 +69,9 @@
                         <input type="submit" value="Registrar" id="submit_entrada">
                     </div>
                 </div>
-                <div class="msg_entrada"></div><!-- Menssagem erro JS -->
+                <div class="itens">
+                    <div class="msg_entrada"></div><!-- Menssagem erro JS -->
+                </div>
             </form>
         </section>
     
@@ -77,7 +79,7 @@
     
         <section class="registro_saida">
             <h2 class="titulo">Visitas do dia ou ativas</h2>
-            <div class="rolagem2">
+            <div class="rolagem_V_dia">
                 <table class="tabela_saida" >
                     <tr class ="titulos">
                         <th>Apartamento</th>
@@ -109,12 +111,14 @@
         <section class="historico_apartamento">
             <h2 class="titulo">Historico de visitas de um apartamento</h2>
             <?php if(filter_input(INPUT_GET,'id_hist') == NULL):?>
-                <ul>
-                    <?php foreach($apartamentos as $ap): ?>
-                        <li><a href="./iindex.php?id_hist=<?=$ap['id'];?>&&ap=<?=$ap['apartamento'];?>"><?=$ap['apartamento'];?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php else: $historico= $visitaDao->historico((int)filter_input(INPUT_GET,'id_hist'));?>
+                <div class="rolagem">
+                    <ul>
+                        <?php foreach($apartamentos as $ap): ?>
+                            <li><a href="./iindex.php?id_hist=<?=$ap['id'];?>&&ap=<?=$ap['apartamento'];?>"><?=$ap['apartamento'];?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <?php else: $historico= $visitaDao->historico((int)filter_input(INPUT_GET,'id_hist'));?>
                 <H3><?php echo "Apartamento: ".filter_input(INPUT_GET,'ap')?></H3>
                 <div class="rolagem">
                     <table class ="tabela_historico">
@@ -133,7 +137,9 @@
                                 <th><?=$visitas['entrada'];?></th>
                                 <th><?=$visitas['saida'];?></th>
                         <?php endforeach; ?>
-                        <a href="./iindex.php"><h4>Voltar</h4></a>
+                        <div class="btn_voltar">
+                            <a href="./iindex.php"><h4>Voltar</h4></a>
+                        </div>
                 </div>
             <?php endif; ?>                  
     </div>

@@ -31,9 +31,12 @@ body{
     grid-gap: 5px;
     grid-template-rows: repeat(5, minmax(110px ,1fr)); 
     grid-template-columns: repeat(12, 1fr); 
-
 }
 
+.titulo{
+    text-align: center;
+    padding-bottom: 10px;
+}
 
 .cadastro_visitante{
     grid-area: 1 / 1 / 3 / 5 ;
@@ -43,42 +46,34 @@ body{
     border: 1px solid var(--Brown);
 }
 
-.titulo{
-    text-align: center;
-    padding-bottom: 10px;
-}
-
 .itens{
     display: flex;
+    max-width: 640px;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 1rem; 
     margin-bottom: 4px;
 }
+
 .itens label{
     width: 90px;
     text-align: center;
-
 }
 
-
+/* todos os inputs */
 .itens input{
-
     text-align: center;
     border: 1px solid ;
     border-radius: 5px;
     padding: 5px;
     width: 200px;
 }
-.btn{
-    display: flex;
-    justify-content: center;
-}
+
+/* botoes cadastrar e registrar */
 .btn input{
     width: 100px;
     background-color: var(--Aquamarine);
     transition: all 300ms ease;
-
  }
  .btn input:hover{
     background-color:var(--Turquoise);
@@ -86,6 +81,8 @@ body{
     transform: scale(1.015);
     cursor: pointer;
  }
+
+/* As opçoes dos apartamentos no registrar */
  .select{
     width: 80px;
     text-align: center;
@@ -98,20 +95,22 @@ body{
     cursor: pointer;
  }
 
+ /* Registrar entrada */
 .registro_entrada{
     grid-area: 1 / 5/ 2 / 13 ;
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: space-evenly;
     border: 1px solid var(--Brown);
-    
-    
 }
 
+/* Visitas do dia ou ativas */
 .registro_saida{
     grid-area: 2 / 5 / 6/ 13;
     border: 1px solid var(--Brown);
 }
+
 .tabela_saida{
     width: 100%;
     min-width: 700px;
@@ -125,39 +124,28 @@ body{
 .conteudo_saida th{
     border: solid 1px var(--Brown);
     padding: 2px 0;
-
+}
+.rolagem_V_dia{
+    height:590px ;
+    overflow-y: scroll;
 }
 
-
-
-
-
-
-
-
+/* Historico de visitas de um apartamento */
 .historico_apartamento{
     grid-area: 3 / 1 / 6/ 5;
-    border: 1px solid var(--Brown);
-    
-   
+    border: 1px solid var(--Brown);  
 }
 .rolagem{
     height:400px ;
     overflow-y: scroll;
 }
-.rolagem2{
-    height:590px ;
-    overflow-y: scroll;
-}
+
 .historico_apartamento ul{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-   
-    
     margin: 5px;
-
 }
 .historico_apartamento ul li{
     display: flex;
@@ -175,31 +163,72 @@ body{
     padding: 30px;
     max-width: 30px;
     border-radius: 5px;
+    color: black;
     background-color: var(--Aquamarine);
     transition: all 300ms ease;
-    
-
 }
 .historico_apartamento a:hover{
     background-color:var(--Turquoise);
-  
     transform: scale(1.015);
     cursor: pointer;
 }
 
 .tabela_historico{
     font-size: 0.7rem;
-    width: 100%;
-   
+    width: 100%;  
 }
 .tabela_historico th{
     border: solid 1px var(--Brown);
     padding: 2px 0;
 }
-
 .tabela_historico_titulo th{
     background-color: var( --DeepSkyBlue);
     font-size: 0.8rem;
     padding: 5px 0;
     border-radius: 5px;
+}
+.btn_voltar{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+/* Mensagem de erro JS */
+.error{
+    background: var(--DarkSlateGrey);
+    color: var(--branco);
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    max-width: 260px;
+    text-align: center;
+}
+
+@media(max-width:945px){
+    .cadastro_visitante{
+        grid-area: 1 / 1 / 4 / 5 ;
+    }
+    .historico_apartamento{
+        grid-area: 4 / 1 / 6/ 5;
+    }
+    .rolagem{
+        height: 240px;
+    }
+}
+@media(max-width:700px) {
+    .titulo{
+        padding-top: 6px;
+    }
+    .container{
+        width: 100vw; 
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .rolagem_V_dia{
+        min-height: 300px;
+        max-height: 400px;
+    }
+    
 }
