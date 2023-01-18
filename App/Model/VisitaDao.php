@@ -27,7 +27,8 @@
             $sql = 'SELECT visita.id, ap.apartamento, v.nome,v.sobrenome, v.indentidade, date_format(visita.entrada, "%d/%m/%Y  %H:%i ") entrada, date_format( visita.saida, "%d/%m/%Y  %H:%i ") saida FROM visita
             JOIN apartamento ap on ap.id = visita.id_apartamento
             JOIN visitante v on v.id = Visita.id_visitante
-            where (current_date() = date(visita.entrada)) or (visita.saida is NULL)';
+            where (current_date() = date(visita.entrada)) or (visita.saida is NULL)
+            order by entrada';
             $stmt = Conexao::getConn()->prepare($sql);
             $stmt-> execute();
 
@@ -62,7 +63,8 @@
             entrada, date_format( visita.saida, "%d/%m/%Y  %H:%i ") saida FROM visita
             JOIN apartamento ap on ap.id = visita.id_apartamento
             JOIN visitante v on v.id = Visita.id_visitante
-            WHERE id_apartamento =?';
+            WHERE id_apartamento =?
+            ORDER BY entrada';
             $stmt = Conexao::getConn()->prepare($sql);
             $stmt->bindValue(1, $v);
             $stmt-> execute();

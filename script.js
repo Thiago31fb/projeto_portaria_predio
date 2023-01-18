@@ -1,7 +1,6 @@
 const nome = document.querySelector("#nome");
 const sobrenome = document.querySelector("#sobrenome");
 const indentidade = document.querySelector("#indentidade");
-const empresa = document.querySelector("#empresa");
 const submit_cadastro = document.querySelector("#submit_cadastro");
 const errorMensagem = document.querySelector(".msg");
 
@@ -10,16 +9,21 @@ submit_cadastro.addEventListener("click", (e) => {
     const nomeV = nome.value;
     const sobrenomeV = sobrenome.value;
     const indentidadeV = indentidade.value;
-    const empresaV = empresa.value;
 
-    if (nomeV === "" || sobrenomeV === "" || indentidadeV === "" || empresaV === "" ) {
+    if (nomeV === "" || sobrenomeV === "" || indentidadeV === "" ) {
         e.preventDefault();
-        errorMensagem.textContent = "Preencha todos os campos!";
+        errorMensagem.textContent = "Preencha os campos obrigatorios.";
         errorMensagem.classList = "error";
+        nome.classList ="campo";
+        sobrenome.classList ="campo";
+        indentidade.classList ="campo";
     
         setTimeout(() => {
             errorMensagem.textContent = "";
             errorMensagem.classList = "";
+            nome.classList ="";
+            sobrenome.classList ="";
+            indentidade.classList ="";
         }, 3000);
         return;
       };
@@ -40,10 +44,11 @@ submit_entrada.addEventListener("click", (e) => {
         e.preventDefault();
         errorMensagem_entrada.textContent = "Digite uma indentidade.";
         errorMensagem_entrada.classList = "error";
-    
+        indentidade_entrada.classList = "campo";
         setTimeout(() => {
             errorMensagem_entrada.textContent = "";
             errorMensagem_entrada.classList = "";
+            indentidade_entrada.classList = "";
         }, 3000);
         return;
     };

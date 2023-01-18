@@ -203,6 +203,10 @@ body{
     max-width: 260px;
     text-align: center;
 }
+.campo{
+    color: red;
+}
+
 
 @media(max-width:945px){
     .cadastro_visitante{
