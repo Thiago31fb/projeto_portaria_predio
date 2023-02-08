@@ -58,7 +58,7 @@
             <h2 class="titulo">Registrar entrada</h2>
             <form action="Registros/setVisita.php" method="post">
                 <div class="itens">
-                    <label for="indentidade">Indentidade:</label>
+                    <label for="indentidade">Identidade:</label>
                     <input type="text" name="indentidade" id="indentidade_entrada">
                     <select class="select" name="apartamento" id="apartamento">
                         <?php foreach($apartamentos as $ap): ?>
