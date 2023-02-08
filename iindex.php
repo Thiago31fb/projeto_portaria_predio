@@ -34,7 +34,7 @@
                     <input type="text" name="sobrenome" id="sobrenome">
                 </div>
                 <div class="itens">
-                    <label for="indentidade">Indentidade:</label>
+                    <label for="identidade">Indentidade:</label>
                     <input type="text" name="indentidade" id="indentidade">
                 </div>
                 <div class="itens">
